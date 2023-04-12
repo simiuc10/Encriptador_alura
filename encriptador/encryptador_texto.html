@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Encriptador de Texto</title>
+	<script>
+		function encriptar(texto) {
+			texto = texto.toLowerCase();
+			texto = texto.replaceAll("e", "enter");
+			texto = texto.replaceAll("i", "imes");
+			texto = texto.replaceAll("a", "ai");
+			texto = texto.replaceAll("o", "ober");
+			texto = texto.replaceAll("u", "ufat");
+			return texto;
+		}
+
+		function desencriptar(texto) {
+			texto = texto.replaceAll("ufat", "u");
+			texto = texto.replaceAll("ober", "o");
+			texto = texto.replaceAll("ai", "a");
+			texto = texto.replaceAll("imes", "i");
+			texto = texto.replaceAll("enter", "e");
+			return texto;
+		}
+
+		function copiarResultado() {
+			var resultado = document.getElementById("resultado");
+			resultado.select();
+			document.execCommand("copy");
+			alert("Texto copiado al portapapeles.");
+		}
+	</script>
+</head>
+<body>
+	<h1>Encriptador de Texto</h1>
+	<p>
+		<label for="texto">Texto:</label>
+		<textarea id="texto" rows="5"></textarea>
+	</p>
+	<p>
+		<label for="operacion">Operación:</label>
+		<select id="operacion">
+			<option value="encriptar">Encriptar</option>
+			<option value="desencriptar">Desencriptar</option>
+		</select>
+	</p>
+	<p>
+		<button onclick="ejecutarOperacion()">Ejecutar</button>
+	</p>
+	<p>
+		<label for="resultado">Resultado:</label>
+		<textarea id="resultado" rows="5" readonly></textarea>
+	</p>
+	<p>
+		<button onclick="copiarResultado()">Copiar resultado</button>
+	</p>
+	<script>
+		function ejecutarOperacion() {
+			var texto = document.getElementById("texto").value;
+			var operacion = document.getElementById("operacion").value;
+			var resultado = "";
+			if (operacion == "encriptar") {
+				resultado = encriptar(texto);
+			} else if (operacion == "desencriptar") {
+				resultado = desencriptar(texto);
+			}
+			document.getElementById("resultado").value = resultado;
+		}
+	</script>
+</body>
+</html>
